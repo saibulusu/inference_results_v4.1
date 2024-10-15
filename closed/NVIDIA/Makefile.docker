@@ -73,7 +73,7 @@ ifneq ($(wildcard /usr/bin/nvidia-docker),)
     # Related issue: https://github.com/kubernetes-sigs/kubespray/issues/6160
     export DOCKER_API_VERSION=1.40
 else
-    DOCKER_RUN_CMD := docker run --gpus=all --runtime=nvidia
+    DOCKER_RUN_CMD := docker run --gpus=all --runtime=nvidia -d
 endif
 
 # If specific DOCKER_COMMAND is not passed, launch interactive docker container session.
@@ -86,7 +86,7 @@ endif
 
 # Docker container host name
 RANDOM := $(shell bash -c 'echo $$RANDOM')
-DOCKER_NAME := mlperf-inference-$(DOCKER_TAG)-$(RANDOM)
+DOCKER_NAME := mlperf-inference-$(DOCKER_TAG)
 
 
 ############################## DOCKER TAG / NAME ##############################
