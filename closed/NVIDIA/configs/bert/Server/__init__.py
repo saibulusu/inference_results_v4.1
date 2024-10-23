@@ -554,23 +554,30 @@ class A100_SXM_80GB_MIG_1x1g10gb_HighAccuracy_TritonUnified(A100_SXM_80GB_MIG_1x
 class A100_SXM4_40GBx8(ServerGPUBaseConfig):
     system = KnownSystem.A100_SXM4_40GBx8
     active_sms = 60
-    gpu_batch_size = {'bert': 48}
+    gpu_batch_size = 96
     graphs_max_seqlen = 240
     server_num_issue_query_threads = 0
-    server_target_qps = 25400
-    soft_drop = 1.0
-    gpu_copy_streams = 4
-    gpu_inference_streams = 2
+    server_target_qps = 24750
+    soft_drop = 0.99
 
 
 @ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99_9, PowerSetting.MaxP)
 class A100_SXM4_40GBx8_HighAccuracy(A100_SXM4_40GBx8):
-    gpu_batch_size = {'bert': 24}
+    gpu_batch_size = 64
     precision = "fp16"
-    server_target_qps = 12820
-    gpu_copy_streams = 4
-    gpu_inference_streams = 2
-    soft_drop = 1.0
+    server_target_qps = 11500
+
+
+@ConfigRegistry.register(HarnessType.Triton, AccuracyTarget.k_99, PowerSetting.MaxP)
+class A100_SXM4_40GBx8_Triton(A100_SXM4_40GBx8):
+    server_target_qps = 22455
+    use_triton = True
+
+
+@ConfigRegistry.register(HarnessType.Triton, AccuracyTarget.k_99_9, PowerSetting.MaxP)
+class A100_SXM4_40GBx8_HighAccuracy_Triton(A100_SXM4_40GBx8_HighAccuracy):
+    server_target_qps = 11205
+    use_triton = True
 
 
 @ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxQ)
