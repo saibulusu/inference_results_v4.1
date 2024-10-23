@@ -441,6 +441,16 @@ class A100_SXM4_40GBx8_HighAccuracy(A100_SXM4_40GBx8):
 
 
 @ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP)
+class A100_SXM4_40GBx8_Triton(A100_SXM4_40GBx8):
+    use_triton = True
+
+
+@ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99_9, PowerSetting.MaxP)
+class A100_SXM4_40GBx8_HighAccuracy_Triton(A100_SXM4_40GBx8_Triton):
+    precision = "fp16"
+
+
+@ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP)
 class A100_SXM4_40GBx1(SingleStreamGPUBaseConfig):
     system = KnownSystem.A100_SXM4_40GBx1
     single_stream_expected_latency_ns = 1700000
