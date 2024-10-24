@@ -440,12 +440,12 @@ class A100_SXM4_40GBx8_HighAccuracy(A100_SXM4_40GBx8):
     precision = "fp16"
 
 
-@ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP)
+@ConfigRegistry.register(HarnessType.Triton, AccuracyTarget.k_99, PowerSetting.MaxP)
 class A100_SXM4_40GBx8_Triton(A100_SXM4_40GBx8):
     use_triton = True
 
 
-@ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99_9, PowerSetting.MaxP)
+@ConfigRegistry.register(HarnessType.Triton, AccuracyTarget.k_99_9, PowerSetting.MaxP)
 class A100_SXM4_40GBx8_HighAccuracy_Triton(A100_SXM4_40GBx8_Triton):
     precision = "fp16"
 
